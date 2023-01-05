@@ -4,6 +4,13 @@ import PropTypes from 'prop-types';
 import css from './Modal.module.css';
 
 export class Modal extends Component {
+  static propTypes = {
+    image: PropTypes.shape({
+      src: PropTypes.string.isRequired,
+      alt: PropTypes.string.isRequired,
+    }).isRequired,
+    onClose: PropTypes.func.isRequired,
+  };
   componentDidMount() {
     window.addEventListener('keydown', this.handleKeydown);
   }
@@ -34,10 +41,4 @@ export class Modal extends Component {
     );
   }
 }
-Modal.propTypes = {
-  image: PropTypes.shape({
-    src: PropTypes.string.isRequired,
-    alt: PropTypes.string.isRequired,
-  }).isRequired,
-  onClose: PropTypes.func.isRequired,
-};
+

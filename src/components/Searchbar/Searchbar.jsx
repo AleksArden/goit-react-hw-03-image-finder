@@ -5,6 +5,9 @@ import { BsSearch } from 'react-icons/bs';
 import css from './Searchbar.module.css';
 
 export class Searchbar extends Component {
+  static propTypes = {
+    onSubmit: PropTypes.func.isRequired,
+  };
   state = {
     inputValue: '',
   };
@@ -38,6 +41,3 @@ export class Searchbar extends Component {
     );
   }
 }
-Searchbar.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
-};
