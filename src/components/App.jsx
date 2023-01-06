@@ -74,6 +74,12 @@ export class App extends Component {
   };
 
   onResolve({ hits, total, totalHits }) {
+    const newImages = hits.map(({ id, webformatURL, tags, largeImageURL }) => ({
+      id,
+      webformatURL,
+      tags,
+      largeImageURL,
+    }));
     if (total === 0) {
       Notiflix.Notify.failure(
         'Sorry, there are no images matching your search query. Please try again.'
@@ -83,7 +89,7 @@ export class App extends Component {
     }
     if (totalHits < this.state.page * 12) {
       this.setState(({ images }) => ({
-        images: [...images, ...hits],
+        images: [...images, ...newImages],
         status: 'idle',
       }));
       Notiflix.Notify.failure(
@@ -93,7 +99,7 @@ export class App extends Component {
       return;
     }
     this.setState(({ images }) => ({
-      images: [...images, ...hits],
+      images: [...images, ...newImages],
       status: 'success',
     }));
   }
